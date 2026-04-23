@@ -21,18 +21,17 @@ public class TargetInteractable : MonoBehaviour
     {
         if (type == InteractableType.Collectable)
         {
-            
+            gameObject.SetActive(false);
         }
         else if (type == InteractableType.Trap)
         {
             
-            Debug.Log("Trap collected, size decreased");
         }
         else if (type == InteractableType.Rotator)
         {
             
             Debug.Log("Hit Rotator! Rotation enabled.");
         }
-        gameObject.SetActive(false);
+        
     }
 }

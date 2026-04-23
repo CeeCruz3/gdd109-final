@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static TargetInteractable;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -9,13 +10,13 @@ public class RigidbodyMoveWithInteractablesAndManager : MonoBehaviour
     [SerializeField] float accel = 12f;
     [SerializeField] float decel = 16f;
 
-    [SerializeField] int score = 0;
 
     Vector2 currentVelocity;
     Rigidbody2D rb;
 
     float moveX;
     float moveY;
+    private Vector3 startPos= new Vector3(-6f, 0f, 0f);
 
     void Awake()
     {
@@ -47,27 +48,42 @@ public class RigidbodyMoveWithInteractablesAndManager : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        TargetInteractable interactable = other.GetComponent<TargetInteractable>();
-        if (interactable == null) return;
+        //TargetInteractable interactable = other.GetComponent<TargetInteractable>();
+        //if (interactable == null) return;
 
-        switch (interactable.type)
+        //switch (interactable.type)
+        //{
+        //    case InteractableType.Collectable:
+        //        score += 1;
+        //        interactable.Trigger();
+        //        Debug.Log("Picked up! Score = " + score);
+        //        break;
+
+        //    case InteractableType.Trap:
+        //        interactable.Trigger();
+        //        rb.transform.position = startPos;
+        //        break;
+        //    case InteractableType.Rotator:
+        //        interactable.Trigger();
+        //        rb.freezeRotation = false;
+
+        //        break;
+        //}
+        switch (other.tag)
         {
-            case InteractableType.Collectable:
-                score += 1;
-                interactable.Trigger();
-                Debug.Log("Picked up! Score = " + score);
+            case("LevelGoal"):
+                ChangeScene.ClearLevel(SceneManager.GetActiveScene().buildIndex - 1);
+                ChangeScene.ToLevelSelect();
                 break;
+            case ("LevelPass"):
+                ChangeScene.PassLevel();
+                ChangeScene.ToLevelSelect();
+                break;
+        }
+        if (other.CompareTag("LevelGoal"))
+        {
+            other.gameObject.SetActive(false);
 
-            case InteractableType.Trap:
-                interactable.Trigger();
-                rb.transform.localScale = new Vector2(.75f, .75f);
-                Debug.Log("Hit trap! Size down.");
-                break;
-            case InteractableType.Rotator:
-                interactable.Trigger();
-                rb.freezeRotation = false;
-
-                break;
         }
     }
 }
