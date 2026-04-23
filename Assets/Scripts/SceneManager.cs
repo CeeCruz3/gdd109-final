@@ -11,6 +11,20 @@ public class ChangeScene : MonoBehaviour
         SceneManager.LoadScene("Level Select");
     }
 
+    public void ToTitle()
+    {
+        SceneManager.LoadScene("Title");
+    }
+
+    public void ResetProg()
+    {
+        PlayerPrefs.SetInt("Level 1", 1);
+        PlayerPrefs.SetInt("Level 2", 0);
+        PlayerPrefs.SetInt("Level 3", 0);
+        PlayerPrefs.SetInt("Level 4", 0);
+        PlayerPrefs.SetInt("Level 5", 0);
+    }
+
     public void ToLevel(int level)
     {
         switch (level)

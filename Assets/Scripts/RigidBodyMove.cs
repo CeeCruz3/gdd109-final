@@ -48,27 +48,6 @@ public class RigidbodyMoveWithInteractablesAndManager : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        //TargetInteractable interactable = other.GetComponent<TargetInteractable>();
-        //if (interactable == null) return;
-
-        //switch (interactable.type)
-        //{
-        //    case InteractableType.Collectable:
-        //        score += 1;
-        //        interactable.Trigger();
-        //        Debug.Log("Picked up! Score = " + score);
-        //        break;
-
-        //    case InteractableType.Trap:
-        //        interactable.Trigger();
-        //        rb.transform.position = startPos;
-        //        break;
-        //    case InteractableType.Rotator:
-        //        interactable.Trigger();
-        //        rb.freezeRotation = false;
-
-        //        break;
-        //}
         switch (other.tag)
         {
             case("LevelGoal"):
@@ -79,11 +58,9 @@ public class RigidbodyMoveWithInteractablesAndManager : MonoBehaviour
                 ChangeScene.PassLevel();
                 ChangeScene.ToLevelSelect();
                 break;
-        }
-        if (other.CompareTag("LevelGoal"))
-        {
-            other.gameObject.SetActive(false);
-
+            case ("KillZone"):
+                rb.transform.position = startPos;
+                break;
         }
     }
 }
