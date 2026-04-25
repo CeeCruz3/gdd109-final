@@ -7,13 +7,19 @@ public class ChangeScene : MonoBehaviour
 {
     public static void ToLevelSelect()
     {
-        Debug.Log("Hi");
         SceneManager.LoadScene("Level Select");
     }
 
-    public void ToTitle()
+    public static void ToTitle()
     {
+        if (PlayerPrefs.GetInt("Levels Completed") == 5)
+        {
+            Debug.Log("You can reset now gg");
+            PlayerPrefs.SetInt("Can Reset", 1);
+        }
+        Debug.Log(PlayerPrefs.GetInt("Can Reset"));
         SceneManager.LoadScene("Title");
+
     }
 
     public void ResetProg()
@@ -23,6 +29,8 @@ public class ChangeScene : MonoBehaviour
         PlayerPrefs.SetInt("Level 3", 0);
         PlayerPrefs.SetInt("Level 4", 0);
         PlayerPrefs.SetInt("Level 5", 0);
+        PlayerPrefs.SetInt("5Done", 0);
+        PlayerPrefs.SetInt("Can Reset", 0);
     }
 
     public void ToLevel(int level)
@@ -52,28 +60,50 @@ public class ChangeScene : MonoBehaviour
         switch (level)
         {
             case 1:
-                PlayerPrefs.SetInt("Level 1", 2);
+                if(PlayerPrefs.GetInt("Level 1") != 2)
+                {
+                    PlayerPrefs.SetInt("Level 1", 2);
+                    PlayerPrefs.SetInt("Can Reset", 1);
+                }
                 break;
             case 2:
-                PlayerPrefs.SetInt("Level 2", 2);
-                PlayerPrefs.SetInt("Level 3", 1);
+                if (PlayerPrefs.GetInt("Level 2") == 1)
+                {
+                    PlayerPrefs.SetInt("Level 2", 2);
+                    PlayerPrefs.SetInt("Level 3", 1);
+                }
                 break;
             case 3:
-                PlayerPrefs.SetInt("Level 3", 2);
-                PlayerPrefs.SetInt("Level 4", 1);
+                if (PlayerPrefs.GetInt("Level 3") == 1)
+                {
+                    
+
+                    PlayerPrefs.SetInt("Level 3", 2);
+                    PlayerPrefs.SetInt("Level 4", 1);
+                }
                 break;
             case 4:
-                PlayerPrefs.SetInt("Level 4", 2);
-                PlayerPrefs.SetInt("Level 5", 1);
+                if (PlayerPrefs.GetInt("Level 4") == 1)
+                {
+                    PlayerPrefs.SetInt("Level 4", 2);
+                    PlayerPrefs.SetInt("Level 5", 1);
+                }
                 break;
             case 5:
-                PlayerPrefs.SetInt("Level 5", 2);
+                if (PlayerPrefs.GetInt("Level 5") == 1)
+                {
+                    PlayerPrefs.SetInt("Level 5", 1);
+                    PlayerPrefs.SetInt("5Done", 1);
+                }
                 break;
 
         }
     }
     public static void PassLevel()
     {
-        PlayerPrefs.SetInt("Level 2", 1);
+        if (PlayerPrefs.GetInt("Level 2") < 1)
+        {
+            PlayerPrefs.SetInt("Level 2", 1);
+        }
     }
 }

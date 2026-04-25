@@ -8,6 +8,8 @@ TagManager:
   - KillZone
   - SceneController
   - LevelPass
+  - Key
+  - Door
   layers:
   - Default
   - TransparentFX
@@ -44,4 +46,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Light Block Shapes
+    uniqueID: 867325059
+    locked: 0
+  - name: Pass Goal Shapes
+    uniqueID: 2087319451
     locked: 0

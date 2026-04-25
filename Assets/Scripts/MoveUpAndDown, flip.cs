@@ -4,14 +4,16 @@ using System.Collections;
 public class MoveFlip : MonoBehaviour
 {
     public Vector3 pointB;
+    public AnimationCurve curve;
 
     IEnumerator Start()
     {
         var pointA = transform.position;
         while (true)
         {
-            yield return StartCoroutine(MoveObject(transform, pointA, pointB, 3.0f));
-            yield return StartCoroutine(MoveObject(transform, pointB, pointA, 3.0f));
+            yield return StartCoroutine(MoveObject(transform, pointA, pointB, 6.0f));
+            
+            yield return StartCoroutine(MoveObject(transform, pointB, pointA, 6.0f));
         }
     }
 
@@ -22,7 +24,16 @@ public class MoveFlip : MonoBehaviour
         while (i < 1.0f)
         {
             i += Time.deltaTime * rate;
-            thisTransform.position = Vector3.Lerp(startPos, endPos, i);
+            float strength = curve.Evaluate(i);
+            thisTransform.position = Vector3.Lerp(startPos, endPos, i*strength);
+           
+        }
+
+        i = 0f;
+
+        while (i < 1.0f)
+        {
+            i += Time.deltaTime * rate;
             yield return null;
         }
         thisTransform.rotation *= Quaternion.Euler(0, 0, 180);

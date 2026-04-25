@@ -10,8 +10,8 @@ public class MoveTest : MonoBehaviour
         var pointA = transform.position;
         while (true)
         {
-            yield return StartCoroutine(MoveObject(transform, pointA, pointB, 3.0f));
-            yield return StartCoroutine(MoveObject(transform, pointB, pointA, 3.0f));
+            yield return StartCoroutine(MoveObject(transform, pointA, pointB, 4.0f));
+            yield return StartCoroutine(MoveObject(transform, pointB, pointA, 4.0f));
         }
     }
 

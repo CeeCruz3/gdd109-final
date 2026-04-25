@@ -1,7 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using static TargetInteractable;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class RigidbodyMoveWithInteractablesAndManager : MonoBehaviour
@@ -10,6 +9,9 @@ public class RigidbodyMoveWithInteractablesAndManager : MonoBehaviour
     [SerializeField] float accel = 12f;
     [SerializeField] float decel = 16f;
 
+    [SerializeField] int level;
+
+    [SerializeField] GameObject[] doors;
 
     Vector2 currentVelocity;
     Rigidbody2D rb;
@@ -20,6 +22,7 @@ public class RigidbodyMoveWithInteractablesAndManager : MonoBehaviour
 
     void Awake()
     {
+        startPos = transform.position;
         rb = GetComponent<Rigidbody2D>();
         rb.freezeRotation = true;
     }
@@ -51,15 +54,20 @@ public class RigidbodyMoveWithInteractablesAndManager : MonoBehaviour
         switch (other.tag)
         {
             case("LevelGoal"):
-                ChangeScene.ClearLevel(SceneManager.GetActiveScene().buildIndex - 1);
-                ChangeScene.ToLevelSelect();
+                ChangeScene.ClearLevel(level);
+                if(level == 1) { ChangeScene.ToTitle(); }
+                else { ChangeScene.ToLevelSelect(); }
                 break;
             case ("LevelPass"):
                 ChangeScene.PassLevel();
                 ChangeScene.ToLevelSelect();
                 break;
             case ("KillZone"):
-                rb.transform.position = startPos;
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                break;
+            case ("Key"):
+                other.gameObject.SetActive(false);
+                DoorManager.Toggle(doors);
                 break;
         }
     }
