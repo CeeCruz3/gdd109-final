@@ -917,6 +917,7 @@ GameObject:
   - component: {fileID: 938753805}
   - component: {fileID: 938753804}
   - component: {fileID: 938753807}
+  - component: {fileID: 938753808}
   m_Layer: 5
   m_Name: Level 1 Button
   m_TagString: Untagged
@@ -1052,6 +1053,19 @@ MonoBehaviour:
   level: 1
   ButtonImage: {fileID: 21300000, guid: 5c82aa1e95929894383cae5c5f9fa1bc, type: 3}
   defaultButtonImage: {fileID: 21300000, guid: 627483669d07a324aae80a9dbd2e51e5, type: 3}
+--- !u!114 &938753808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 938753802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e805d0138f6cff42977d57ec60f2e55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spook: {fileID: 21300000, guid: 8ab1c2f76cff56e42a5b171b8908b22b, type: 3}
 --- !u!1 &1273553612
 GameObject:
   m_ObjectHideFlags: 0
