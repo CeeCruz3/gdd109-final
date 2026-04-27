@@ -10,6 +10,7 @@ public class RigidbodyMoveWithInteractablesAndManager : MonoBehaviour
     [SerializeField] float decel = 16f;
 
     [SerializeField] int level;
+    [SerializeField] private AudioSource unlock;
 
     [SerializeField] GameObject[] doors;
 
@@ -68,6 +69,7 @@ public class RigidbodyMoveWithInteractablesAndManager : MonoBehaviour
             case ("Key"):
                 other.gameObject.SetActive(false);
                 DoorManager.Toggle(doors);
+                unlock.Play();
                 break;
         }
     }

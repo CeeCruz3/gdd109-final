@@ -51,6 +51,7 @@ public class ChangeScene : MonoBehaviour
                 break;
             case 5:
                 SceneManager.LoadScene("Level 5");
+                Debug.Log(PlayerPrefs.GetInt("Level 5"));
                 break;
         }
     }
@@ -92,8 +93,9 @@ public class ChangeScene : MonoBehaviour
             case 5:
                 if (PlayerPrefs.GetInt("Level 5") == 1)
                 {
-                    PlayerPrefs.SetInt("Level 5", 1);
+                    PlayerPrefs.SetInt("Level 5", 2);
                     PlayerPrefs.SetInt("5Done", 1);
+                    PlayerPrefs.SetInt("beep", 1);
                 }
                 break;
 

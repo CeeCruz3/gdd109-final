@@ -6,11 +6,25 @@ using UnityEngine.UI;
 public class LevelChecker : MonoBehaviour
 {
     [SerializeField] int level;
+
+    public Sprite ButtonImage;
+    public Sprite defaultButtonImage;
+    
     // Start is called before the first frame update
     void Start()
     {
         switch (level)
         {
+            case 1:
+                if(PlayerPrefs.GetInt("Level 1") > 1)
+                {
+                    this.gameObject.GetComponent<Button>().image.sprite = ButtonImage;
+                }
+                else
+                {
+                    this.gameObject.GetComponent<Button>().image.sprite = defaultButtonImage;
+                }
+                    break;
             case 2:
                 if (PlayerPrefs.GetInt("Level 2") < 1)
                 {
@@ -20,7 +34,16 @@ public class LevelChecker : MonoBehaviour
                 {
                     this.gameObject.GetComponent<Button>().interactable = true;
                 }
-                    break;
+
+                if (PlayerPrefs.GetInt("Level 2") > 1)
+                {
+                    this.gameObject.GetComponent<Button>().image.sprite = ButtonImage;
+                }
+                else
+                {
+                    this.gameObject.GetComponent<Button>().image.sprite = defaultButtonImage;
+                }
+                break;
             case 3:
                 if (PlayerPrefs.GetInt("Level 3") < 1)
                 {
@@ -29,6 +52,15 @@ public class LevelChecker : MonoBehaviour
                 else
                 {
                     this.gameObject.GetComponent<Button>().interactable = true;
+                }
+
+                if (PlayerPrefs.GetInt("Level 3") > 1)
+                {
+                    this.gameObject.GetComponent<Button>().image.sprite = ButtonImage;
+                }
+                else
+                {
+                    this.gameObject.GetComponent<Button>().image.sprite = defaultButtonImage;
                 }
                 break;
             case 4:
@@ -40,6 +72,15 @@ public class LevelChecker : MonoBehaviour
                 {
                     this.gameObject.GetComponent<Button>().interactable = true;
                 }
+
+                if (PlayerPrefs.GetInt("Level 4") > 1)
+                {
+                    this.gameObject.GetComponent<Button>().image.sprite = ButtonImage;
+                }
+                else
+                {
+                    this.gameObject.GetComponent<Button>().image.sprite = defaultButtonImage;
+                }
                 break;
             case 5:
                 if (PlayerPrefs.GetInt("Level 5") < 1)
@@ -49,6 +90,15 @@ public class LevelChecker : MonoBehaviour
                 else
                 {
                     this.gameObject.GetComponent<Button>().interactable = true;
+                }
+
+                if (PlayerPrefs.GetInt("Level 5") > 1)
+                {
+                    this.gameObject.GetComponent<Button>().image.sprite = ButtonImage;
+                }
+                else
+                {
+                    this.gameObject.GetComponent<Button>().image.sprite = defaultButtonImage;
                 }
                 break;
         }
